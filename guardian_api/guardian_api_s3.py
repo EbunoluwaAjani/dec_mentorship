@@ -10,7 +10,7 @@ load_dotenv()
 AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
 API_KEY = os.getenv('API_KEY')
-url ='https://content.guardianapis.com/search?page=1&q="nigeria"'
+url ='https://content.guardianapis.com/search?'
 df = extract(url)
 
 
