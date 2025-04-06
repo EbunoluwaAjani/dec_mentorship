@@ -1,7 +1,8 @@
 import os
-import requests
 import time
+
 import pandas as pd
+import requests
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -54,3 +55,4 @@ def extract(base_url):
     df = pd.DataFrame(extracted_file)
     print('Data completely processed')
     return df
+
