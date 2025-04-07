@@ -10,38 +10,39 @@ load_dotenv()
 AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
 
+# Task1: Extract all senior roles and manager roles into a different list.
+url = (
+    "https://jobicy.com/api/v2/remote-jobs"
+    "?count=20&geo=usa&industry=marketing&tag=seo"
+)
+response = requests.get(url)
+print(f"Status Code: {response.status_code}")
+remotejobs = response.json()
+Senior_Role = []
+Manager_Role = []
+for details in remotejobs['jobs']:
+    if 'Senior' in details['jobTitle'] or details['jobLevel'] == 'Senior':
+        Senior_Role.append(details['jobTitle'])
+    elif 'Manager' in details['jobTitle']:
+        Manager_Role.append(details['jobTitle'])
 
-response2 = requests.get("https://randomuser.me/api/?results=500")
-response2.status_code
-my_doc = response2.json()
-my_new_doc = my_doc['results'][:]
-
-# subtask1: Extracting all male and female profiles into a different list
-male_profile = []
-female_profile = []
-gender = []
-for item in my_new_doc:
-    gender.append(item['gender'])
-    if item['gender'] == 'male':
-        male_profile.append(item)
-    elif item['gender'] == 'female':
-        female_profile.append(item)
-
-# subtask2: Extract all dob date into a list(date_list).
-date_list = []
-for item in my_new_doc:
-    date_list.append(item['dob']['date'])
-
-full_name = []
-for names in my_new_doc:
-    first_name = names['name']['first']
-    last_name = names['name']['last']
-    concat_name = first_name + ' ' + last_name
-    full_name.append(concat_name)
-
-randomuserprofile = {
-    'full_name': full_name,
-    'gender': gender,
-    'dob': date_list
+remoteroles = {
+    'Senior_Role': Senior_Role,
+    'Manager_Role': Manager_Role
 }
+df = pd.json_normalize(remoteroles)
+print(df)
+
+
+session = boto3.session.Session(
+    aws_access_key_id=AWS_ACCESS_KEY_ID,
+    aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
+    region_name="eu-central-1")
+
+wr.s3.to_parquet(
+    df=df,
+    path="s3://apitest-by-ebun/api_tasks/remotejobroles/",
+    boto3_session=session,
+    mode='append',
+    dataset=True)
 
