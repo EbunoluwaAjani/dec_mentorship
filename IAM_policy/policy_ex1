@@ -1,0 +1,51 @@
+'''
+This policy grants users access to S3 with specific permissions, including listing all buckets,
+listing objects in buckets with names starting with "spark-job-", 
+deleting objects in the "spark-job-data-input" bucket, and denying deletion of CSV files in the "dumps" folder.
+'''
+
+{
+	"Version": "2012-10-17",
+	"Statement": [
+		{
+			"Sid": "Statement1",
+			"Effect": "Allow",
+			"Action": [
+				"s3:ListAllMyBuckets"
+			],
+			"Resource": [
+				"arn:aws:s3:::*"
+			]
+		},
+		{
+			"Sid": "Statement2",
+			"Effect": "Allow",
+			"Action": [
+				"s3:ListBucket"
+			],
+			"Resource": [
+				"arn:aws:s3:::spark-job-*"
+			]
+		},
+		{
+			"Sid": "Statement3",
+			"Effect": "Allow",
+			"Action": [
+				"s3:DeleteObject"
+			],
+			"Resource": [
+				"arn:aws:s3:::spark-job-data-input/dumps/*"
+			]
+		},
+		{
+			"Sid": "Statement4",
+			"Effect": "Deny",
+			"Action": [
+				"s3:DeleteObject"
+			],
+			"Resource": [
+				"arn:aws:s3:::spark-job-data-input/dumps/*.csv"
+			]
+		}
+	]
+}
