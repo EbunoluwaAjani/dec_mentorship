@@ -1,0 +1,55 @@
+1. Service Name: S3
+Resource: Access Point
+ARN: arn:${Partition}:s3:${Region}:${Account}:accesspoint/${AccessPointName}
+Link to Doc:  https://docs.aws.amazon.com/service-authorization/latest/reference/list_amazons3.html#amazons3-resources-for-iam-policies
+
+2. Service Name: S3
+Resource: Bucket
+ARN: arn:${Partition}:s3:::${BucketName}
+Link to Doc: https://docs.aws.amazon.com/service-authorization/latest/reference/list_amazons3.html#amazons3-resources-for-iam-policies
+
+3. Service Name: S3
+Resource: Storage Lens Group
+ARN: arn:${Partition}:s3:${Region}:${Account}:storage-lens-group/${Name}
+Link to Doc: https://docs.aws.amazon.com/service-authorization/latest/reference/list_amazons3.html#amazons3-resources-for-iam-policies
+
+4. Service Name: S3
+Resource: Object
+ARN: arn:${Partition}:s3:::${BucketName}/${ObjectName}
+Link to Doc: https://docs.aws.amazon.com/service-authorization/latest/reference/list_amazonec2.html#amazonec2-resources-for-iam-policies
+
+4. Service Name: IAM
+Resource: MFA
+ARN: arn:${Partition}:iam::${Account}:mfa/${MfaTokenIdWithPath}
+Link to Doc: https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsidentityandaccessmanagementiam.html#awsidentityandaccessmanagementiam-resources-for-iam-policies
+
+5. Service Name: IAM
+Resource: Role
+ARN: arn:${Partition}:iam::${Account}:role/${RoleNameWithPath}
+Link to Doc: https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsidentityandaccessmanagementiam.html#awsidentityandaccessmanagementiam-resources-for-iam-policies
+
+6. Service Name: IAM
+Resource: User
+ARN: arn:${Partition}:iam::${Account}:user/${UserNameWithPath}
+Link to Doc: https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsidentityandaccessmanagementiam.html#awsidentityandaccessmanagementiam-resources-for-iam-policies
+
+7. Service Name: EC2
+Resource: Elastic IP
+ARN: arn:${Partition}:ec2:${Region}:${Account}:elastic-ip/${AllocationId}
+Link to Doc: https://docs.aws.amazon.com/service-authorization/latest/reference/list_amazonec2.html#amazonec2-resources-for-iam-policies
+
+8. Service Name: EC2
+Resource: Fleet
+ARN: arn:${Partition}:ec2:${Region}:${Account}:fleet/${FleetId}
+Link to Doc: https://docs.aws.amazon.com/service-authorization/latest/reference/list_amazonec2.html#amazonec2-resources-for-iam-policies
+
+9. Service Name: EC2
+Resource: Instance
+ARN: arn:${Partition}:ec2:${Region}:${Account}:instance/${InstanceId}
+Link to Doc: https://docs.aws.amazon.com/service-authorization/latest/reference/list_amazonec2.html#amazonec2-resources-for-iam-policies
+
+10. Service Name: EC2
+Resource: Image
+ARN: arn:${Partition}:ec2:${Region}::image/${ImageId}
+Link to Doc: https://docs.aws.amazon.com/service-authorization/latest/reference/list_amazonec2.html#amazonec2-resources-for-iam-policies
+
