@@ -1,0 +1,18 @@
+#This policy allows users to create new IAM users with names starting with "engineer". 
+
+{
+	"Version": "2012-10-17",
+	"Statement": [
+		{
+			"Sid": "Statement1",
+			"Effect": "Allow",
+			"Action": [
+				"iam:CreateUser",
+				"iam:ListUsers"
+			],
+			"Resource": [
+				"arn:aws:iam::340752803932:user/engineer*"
+			]
+		}
+	]
+}
